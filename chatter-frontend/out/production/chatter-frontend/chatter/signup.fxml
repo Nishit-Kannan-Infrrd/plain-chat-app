@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatter.controllers.SignUpController">
+   <children>
+      <Label layoutX="112.0" layoutY="97.0" prefHeight="19.0" prefWidth="88.0" text="Email Address" textAlignment="JUSTIFY" />
+      <TextField layoutX="206.0" layoutY="93.0" promptText="jane.doe@example.com" />
+      <Label layoutX="136.0" layoutY="135.0" prefHeight="19.0" prefWidth="63.0" text="Password" textAlignment="RIGHT" />
+      <PasswordField layoutX="206.0" layoutY="131.0" />
+      <Label layoutX="87.0" layoutY="176.0" text="Confirm Password" />
+      <PasswordField layoutX="206.0" layoutY="171.0" />
+      <Button layoutX="171.0" layoutY="237.0" mnemonicParsing="false" text="Sign Up" />
+      <Button fx:id="btnLeaveSignUp" layoutX="271.0" layoutY="237.0" mnemonicParsing="false" onAction="#close" text="Leave" />
+   </children>
+</AnchorPane>

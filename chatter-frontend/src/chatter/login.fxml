@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="LoginScene" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatter.controllers.LoginController">
+    <children>
+        <Label layoutX="92.0" layoutY="141.0" text="Email Address" />
+        <TextField fx:id="txtEmailAddressLogin" layoutX="203.0" layoutY="136.0" promptText="jane.doe@example.com" />
+        <Label layoutX="120.0" layoutY="187.0" text="Password" />
+        <PasswordField fx:id="pwdFldPasswordLogin" layoutX="203.0" layoutY="182.0" promptText="********" />
+        <Button fx:id="btnEnterLogin" layoutX="136.0" layoutY="257.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="76.0" text="Enter" />
+        <Button fx:id="btnLeaveLogin" layoutX="250.0" layoutY="257.0" mnemonicParsing="false" onAction="#close" prefHeight="27.0" prefWidth="76.0" text="Leave" />
+        <Label layoutX="195.0" layoutY="320.0" text="New User? " />
+        <Hyperlink fx:id="lnkSingUpLogin" layoutX="265.0" layoutY="316.0" onAction="#signUp" text="Sign up." />
+        <Label fx:id="lblErrorMessageLogin" layoutX="92.0" layoutY="40.0" prefHeight="27.0" prefWidth="281.0" />
+    </children>
+</AnchorPane>

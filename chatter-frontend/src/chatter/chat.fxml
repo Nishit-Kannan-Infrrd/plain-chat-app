@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chatter.controllers.ChatController">
+   <children>
+      <VBox prefHeight="504.0" prefWidth="138.0" style="-fx-border-color: black;">
+         <opaqueInsets>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </opaqueInsets>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Create Chat Room" />
+         </children>
+      </VBox>
+      <VBox layoutX="138.0" prefHeight="504.0" prefWidth="362.0" style="-fx-border-color: black;">
+         <children>
+            <VBox prefHeight="427.0" prefWidth="360.0" style="-fx-border-color: black;" />
+            <VBox prefHeight="134.0" prefWidth="360.0" style="-fx-border-color: black;">
+               <children>
+                  <TextArea prefHeight="76.0" prefWidth="345.0" style="-fx-border-color: black;" />
+                  <VBox prefHeight="26.0" prefWidth="358.0" style="-fx-border-color: black;">
+                     <children>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Send" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children></VBox>
+   </children>
+</AnchorPane>
