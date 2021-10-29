@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package common;
+
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.gateway.protos.common";
+
+message UserDetails {
+  string emailAddress = 1;
+  string password = 2;
+}

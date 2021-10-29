@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
 import java.util.logging.Logger;
 
@@ -39,9 +43,11 @@ public class SignUpController
 
 
     @PostMapping ("")
-    public DeferredResult<ResponseEntity<LoginResponse>> signUp( @RequestBody LoginRequest loginRequest )
+    public DeferredResult<ResponseEntity<LoginResponse>> signUp( @RequestHeader Map<String, String> requestHeaders, @RequestBody LoginRequest loginRequest, HttpServletRequest request )
     {
         LOGGER.info( () -> "New user sign up " + loginRequest.getEmailAddress() );
+        requestHeaders.put( "request_url", request.getRequestURL().toString() );
+        requestHeaders.put( "request_uri", request.getRequestURI() );
         DeferredResult<ResponseEntity<LoginResponse>> deferredResult = new DeferredResult<>( 5000l );
         deferredResult.onTimeout( () -> deferredResult
             .setErrorResult( ResponseEntity.status( HttpStatus.REQUEST_TIMEOUT ).body( "Request timed out." ) ) );
@@ -49,7 +55,7 @@ public class SignUpController
         // publish event
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         forkJoinPool.submit( () -> {
-            signUpService.publishUserSignUpEvent( loginRequest );
+            signUpService.publishUserSignUpEvent( loginRequest, requestHeaders );
             // wait for response
             deferredResult.setResult( new ResponseEntity<>( new LoginResponse( "1234", "a@b.com" ), HttpStatus.CREATED ) );
         } );

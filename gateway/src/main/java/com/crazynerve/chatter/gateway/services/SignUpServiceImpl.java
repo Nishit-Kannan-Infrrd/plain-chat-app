@@ -2,6 +2,7 @@ package com.crazynerve.chatter.gateway.services;
 
 import com.crazynerve.chatter.gateway.common.Events;
 import com.crazynerve.chatter.gateway.protos.UserSignUpEvent;
+import com.crazynerve.chatter.gateway.protos.common.RequestInfo;
 import com.crazynerve.chatter.gateway.protos.common.UserDetails;
 import com.crazynerve.chatter.gateway.vos.LoginRequest;
 import com.google.protobuf.Timestamp;
@@ -14,6 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.time.Instant;
+import java.util.Map;
 import java.util.logging.Logger;
 
 
@@ -35,17 +37,20 @@ public class SignUpServiceImpl implements SignUpService
 
 
     @Override
-    public void publishUserSignUpEvent( LoginRequest loginRequest )
+    public void publishUserSignUpEvent( LoginRequest loginRequest, Map<String, String> headers )
     {
-        LOGGER.info( () -> "Login attempted " + loginRequest );
+        LOGGER.info( () -> "Signup attempted " + loginRequest );
         UserDetails userDetails = UserDetails.newBuilder().setEmailAddress( loginRequest.getEmailAddress() )
             .setPassword( loginRequest.getPassword() ).build();
+        RequestInfo requestInfo = RequestInfo.newBuilder()
+            .putAllHeaders( headers ).build();
         Instant instant = Instant.now();
         UserSignUpEvent userSignUpEvent = UserSignUpEvent.newBuilder().setEvent( Events.USER_SIGN_UP_EVENT )
             .setTimeStamp( Timestamp.newBuilder().setSeconds( instant.getEpochSecond() ).setNanos( instant.getNano() ).build() )
-            .setUserDetails( userDetails ).build();
+            .setUserDetails( userDetails )
+            .setRequestInfo( requestInfo ).build();
         ListenableFuture<SendResult<String, UserSignUpEvent>> eventFuture = userSignUpEventKafkaTemplate
-            .send( userSignUpTopic, userSignUpEvent );
+            .send( userSignUpTopic, loginRequest.getEmailAddress(), userSignUpEvent );
         eventFuture.addCallback( new ListenableFutureCallback<SendResult<String, UserSignUpEvent>>()
         {
             @Override

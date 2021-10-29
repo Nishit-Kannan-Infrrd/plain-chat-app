@@ -3,6 +3,7 @@ package com.crazynerve.chatter.usermanagement.services;
 import com.crazynerve.chatter.usermanagement.entities.UserEntity;
 import com.crazynerve.chatter.usermanagement.models.UserAuthenticationVO;
 import com.crazynerve.chatter.usermanagement.models.UserEmailAddressVO;
+import com.crazynerve.chatter.usermanagement.models.UserModelBoolResponse;
 import com.crazynerve.chatter.usermanagement.models.UserResponseVO;
 import com.crazynerve.chatter.usermanagement.repositories.UserRepository;
 import io.grpc.Status;
@@ -67,6 +68,16 @@ public class UserManagementServiceImpl extends UserManagementServiceGrpc.UserMan
         }
 
     }
+
+
+    @Override
+    public void isUserPresent( UserEmailAddressVO request, StreamObserver<UserModelBoolResponse> responseObserver )
+    {
+        responseObserver
+            .onNext( UserModelBoolResponse.newBuilder().setResult( isUserPresent( request.getEmailAddress() ) ).build() );
+        responseObserver.onCompleted();
+    }
+
 
     private boolean isUserPresent( String emailAddress )
     {

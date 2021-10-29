@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.protos.common";
+
+message UserSignUpEventValidation {
+  string event = 1;
+  string email_address = 2;
+  bool result = 3;
+  string message = 4;
+}
+
