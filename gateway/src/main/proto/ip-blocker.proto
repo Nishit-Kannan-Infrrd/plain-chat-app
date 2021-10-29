@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.ipblocker.services";
+
+import "common/ipmodels.proto";
+
+service IpBlockerService {
+  rpc blackListIpAddress(common.BlackListIPAddressVO) returns (common.BlackListedIpAddressResponseVO);
+  rpc getBlackListedIpAddressByIp(common.BlackListIPAddressVO) returns (common.BlackListedIpAddressResponseVO);
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package common;
+
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.ipblocker.models";
+
+message BlackListIPAddressVO {
+  string ip_address = 1;
+}
+
+message BlackListedIpAddressResponseVO {
+  string ip_address_id = 1;
+  string ip_address = 2;
+}
