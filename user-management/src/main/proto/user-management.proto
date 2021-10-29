@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "common/usermodels.proto";
+
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.usermanagement.services";
+
+service UserManagementService {
+  rpc addUser(common.UserAuthenticationVO) returns (common.UserResponseVO);
+  rpc getUserDetails(common.UserEmailAddressVO) returns (common.UserResponseVO);
+}
+

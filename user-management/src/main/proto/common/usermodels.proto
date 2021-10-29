@@ -1,0 +1,21 @@
+syntax = "proto3";
+package common;
+option java_multiple_files = true;
+option java_package = "com.crazynerve.chatter.usermanagement.models";
+
+message UserAuthenticationVO {
+  string email_address = 1;
+  string password = 2;
+}
+
+message UserResponseVO {
+  string user_id = 1;
+  string email_address = 2;
+}
+
+message UserEmailAddressVO {
+  string email_address = 1;
+}
+
+
+

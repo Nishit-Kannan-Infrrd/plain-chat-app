@@ -21,6 +21,6 @@ public class LoginController
     @PostMapping("")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest ){
         LOGGER.info( () -> "User login for " + loginRequest.getEmailAddress() );
-        return new ResponseEntity<>( new LoginResponse("1234"), HttpStatus.OK );
+        return new ResponseEntity<>( new LoginResponse("1234", "a@b.com"), HttpStatus.OK );
     }
 }

@@ -13,4 +13,5 @@ import lombok.ToString;
 public class LoginResponse
 {
     private String userId;
+    private String emailAddress;
 }
